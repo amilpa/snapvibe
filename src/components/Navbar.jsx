@@ -21,7 +21,7 @@ import AccountMenu from "./AccountMenu";
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
   justifyContent: "space-between",
-  paddingBlock: ".8rem",
+  paddingBlock: ".2rem",
 });
 
 const Search = styled("div")(({ theme }) => ({
@@ -62,9 +62,9 @@ const Navbar = () => {
         <StyledToolbar>
           <Typography
             variant="h6"
-            sx={{ display: { xs: "none", sm: "block" } }}
+            sx={{ display: { xs: "none", sm: "block" }, fontWeight: "bold" }}
           >
-            Snap Vibe
+            SnapVibe
           </Typography>
           <TerminalIcon
             sx={{
