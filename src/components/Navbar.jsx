@@ -1,19 +1,19 @@
 "use client";
 import {
-  Terminal as TerminalIcon,
   Mail as MailIcon,
   Notifications,
+  Terminal as TerminalIcon,
 } from "@mui/icons-material";
 
 import {
   AppBar,
   Badge,
   Box,
+  Container,
   InputBase,
-  styled,
   Toolbar,
   Typography,
-  Container,
+  styled,
 } from "@mui/material";
 
 import AccountMenu from "./AccountMenu";
