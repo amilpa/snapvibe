@@ -1,17 +1,25 @@
+"use client";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
-import { Container, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
+import { useSession } from "next-auth/react";
+
+import { redirect } from "next/navigation";
 
 export default function DashboardLayout({ children }) {
+  const { data: session } = useSession();
+
+  if (!session) {
+    redirect("/");
+  }
+
   return (
     <>
-      <Container maxWidth="full" sx={{ p: "0px" }}>
-        <Navbar />
-        <Stack direction={"row"} spacing={2} justifyContent={"space-between"}>
-          <Sidebar />
-          {children}
-        </Stack>
-      </Container>
+      <Navbar />
+      <Stack direction={"row"} spacing={2} justifyContent={"space-between"}>
+        <Sidebar />
+        {children}
+      </Stack>
     </>
   );
 }

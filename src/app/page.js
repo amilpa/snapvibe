@@ -9,6 +9,8 @@ import Paper from "@mui/material/Paper";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 
+import { signIn } from "next-auth/react";
+
 function Copyright(props) {
   return (
     <Typography
@@ -83,6 +85,7 @@ export default function SignInSide() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2, p: "20px" }}
+                onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
               >
                 Sign In With Google
                 <Google sx={{ fontSize: "medium", marginLeft: "5px" }} />
