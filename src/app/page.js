@@ -1,5 +1,4 @@
 "use client";
-import { Google } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -9,7 +8,11 @@ import Paper from "@mui/material/Paper";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 
+import { Google } from "@mui/icons-material";
 import { signIn } from "next-auth/react";
+
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 function Copyright(props) {
   return (
@@ -42,6 +45,12 @@ export default function SignInSide() {
       password: data.get("password"),
     });
   };
+
+  const session = useSession();
+
+  if (session.data) {
+    redirect("/dashboard");
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -85,7 +94,7 @@ export default function SignInSide() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2, p: "20px" }}
-                onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+                onClick={() => signIn("google")}
               >
                 Sign In With Google
                 <Google sx={{ fontSize: "medium", marginLeft: "5px" }} />
