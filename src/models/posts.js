@@ -18,8 +18,7 @@ const postSchema = new mongoose.Schema({
     required: false,
   },
   likes: {
-    type: Array,
-    default: [],
+    type: Number,
   },
   createdAt: {
     type: Date,
@@ -27,4 +26,4 @@ const postSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("Post", postSchema);
+export default mongoose.models?.User || mongoose.model("User", postSchema);

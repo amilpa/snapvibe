@@ -1,10 +1,10 @@
 import { Avatar as Profile } from "@mui/material";
 
-const Avatar = () => {
+const Avatar = ({ url }) => {
   return (
     <Profile
       alt="Profile Picture"
-      src="https://personal-portfolio-2020.s3.amazonaws.com/profile.jpg"
+      src={url}
       sx={{ width: "30px", height: "30px" }}
     />
   );

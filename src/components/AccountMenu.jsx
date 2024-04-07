@@ -1,19 +1,23 @@
 "use client";
-import { useState } from "react";
 import Avatar from "@/components/Avatar";
+import { useState } from "react";
+
+import { signOut, useSession } from "next-auth/react";
 
 import {
+  Divider,
+  IconButton,
+  ListItemIcon,
   Menu,
   MenuItem,
-  ListItemIcon,
-  Divider,
   Tooltip,
-  IconButton,
 } from "@mui/material";
 
-import { PersonAdd, Settings, Logout } from "@mui/icons-material";
+import { Logout, PersonAdd, Settings } from "@mui/icons-material";
 
 export default function AccountMenu() {
+  const { data: session } = useSession();
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -33,7 +37,7 @@ export default function AccountMenu() {
           aria-haspopup="true"
           aria-expanded={open ? "true" : undefined}
         >
-          <Avatar />
+          <Avatar url={session.user.image} />
         </IconButton>
       </Tooltip>
 
@@ -73,7 +77,7 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem onClick={handleClose}>
-          <Avatar /> My Profile
+          <Avatar url={session.user.image} /> My Profile
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleClose}>
@@ -88,7 +92,7 @@ export default function AccountMenu() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={() => signOut()}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
